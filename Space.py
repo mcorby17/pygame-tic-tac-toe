@@ -30,6 +30,7 @@ class Space:
         #self.rect.center = (250, 250)
 
         # Automatically draw self
+        # NOTE: Temporarily using blue to see where the spaces are
         pygame.draw.rect(self.screen, (0, 0, 255), self.rect)
 
     def ShowPiece(self, player, mousePos):
