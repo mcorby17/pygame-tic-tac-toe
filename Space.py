@@ -53,3 +53,5 @@ class Space:
             self.screen.blit(self.O, self.rect)
 
         self.status = player
+
+        return True

@@ -5,13 +5,6 @@ from pygame.locals import *
 
 pygame.init()
 
-# TODO: Temporary player toggle function - should move into Board class
-def TogglePlayer(player):
-    if player == 'X':
-        return 'O'
-    if player == 'O':
-        return 'X'
-
 # TODO: Move into board class, if possible
 SCREEN = pygame.display.set_mode((500, 500))
 pygame.display.set_caption("Tic Tac Toe")
@@ -30,8 +23,7 @@ board.Draw()
 #screenCenter = screenRect.center
 
 # Keep track of player turns
-# TODO: Move into board class
-player = 'O'
+# player = 'O'
 
 # Create a square, fill it with a color and blit it to the screen
 # Interesting, don't have to blit it
@@ -41,7 +33,10 @@ while True:
     for event in pygame.event.get():
         if event.type == QUIT:
             sys.exit()
-       # elif event.type == MOUSEBUTTONDOWN:
+        elif event.type == MOUSEBUTTONDOWN:
+            # Need a board.HandleClick function of some sort
+            board.HandleClick(pygame.mouse.get_pos())
+
             #if testSpace.ShowPiece(player, pygame.mouse.get_pos()):
             #    player = TogglePlayer(player)
 

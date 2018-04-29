@@ -44,6 +44,9 @@ class Board:
         self.WIDTH_DIFF = self.spaceWidth + self.LINE_THICKNESS
         self.HEIGHT_DIFF = self.spaceHeight + self.LINE_THICKNESS
 
+        # Keep track of player
+        self.player = 'X'
+
     def Draw(self):
         """
         Draw the board
@@ -98,3 +101,28 @@ class Board:
                                  self.LINE_THICKNESS)
                 linesMade += 1
                 xy_location[1] += self.HALF_LINE_THICKNESS
+
+    def TogglePlayer(self):
+        """
+        Toggle the current player's turn. Should be used when the previous
+        player has placed their piece
+        :return:
+        """
+        if self.player == 'X':
+            self.player = 'O'
+            return
+        if self.player == 'O':
+            self.player = 'X'
+            return
+
+    def HandleClick(self, mousePosition):
+        """
+        React to use mouse click. Essentially pass the mouse position to the
+        ShowPiece() method for each Space object.
+
+        :param mousePosition:
+        :return:
+        """
+        for space in self.spaces:
+            if space.ShowPiece(self.player, mousePosition):
+                self.TogglePlayer()
