@@ -14,8 +14,9 @@ class Space:
         How am I going to align each Space? Constructor might need
         arguments as to where the Space should be blitted
     """
-    def __init__(self, screen, height=100, width=100, location=(0, 0)):
+    def __init__(self, screen, boardPosition, height=100, width=100, location=(0, 0)):
         self.screen = screen
+        self.boardPosition = boardPosition
         self.height = height
         self.width = width
         self.location = location
@@ -31,7 +32,7 @@ class Space:
 
         # Automatically draw self
         # NOTE: Temporarily using blue to see where the spaces are
-        pygame.draw.rect(self.screen, (0, 0, 255), self.rect)
+        pygame.draw.rect(self.screen, (255, 255, 255), self.rect)
 
     def ShowPiece(self, player, mousePos):
         """

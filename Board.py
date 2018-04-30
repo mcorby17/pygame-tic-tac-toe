@@ -58,18 +58,20 @@ class Board:
         # Keep track of lines made - we don't want more than 4
         linesMade = 0
 
-        for y in range(3):
-            for x in range(3):
+        for x in range(3):
+            for y in range(3):
 
                 # Create a new space and put in list to keep track of
-                self.spaces.append(Space(self.screen, self.spaceHeight, self.spaceWidth,
+                # Need a new argument to know what position the space is on the board
+                #   This is the (x, y) tuple
+                self.spaces.append(Space(self.screen, (x, y), self.spaceHeight, self.spaceWidth,
                                          tuple(xy_location)))
 
                 # Update xy_location list to correct position
                 xy_location[0] += self.spaceWidth
 
                 # Create the line if we haven't reached limit of 4
-                if linesMade < 4 and x != 2:
+                if linesMade < 4 and y != 2:
 
                     # Move half the line thickness so there's no overlap between the line
                     # and the Space
@@ -115,6 +117,15 @@ class Board:
             self.player = 'X'
             return
 
+    def UpdateBoardStatus(self, space):
+        """
+        Update board array with the status of each Space object for reference later
+        so we can see if a player has won the game or if the game ended in a tie
+        :return:
+        """
+        self.board[space.boardPosition[0]][space.boardPosition[1]] = space.status
+
+
     def HandleClick(self, mousePosition):
         """
         React to use mouse click. Essentially pass the mouse position to the
@@ -125,4 +136,5 @@ class Board:
         """
         for space in self.spaces:
             if space.ShowPiece(self.player, mousePosition):
+                self.UpdateBoardStatus(space)
                 self.TogglePlayer()
