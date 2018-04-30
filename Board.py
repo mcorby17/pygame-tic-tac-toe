@@ -137,4 +137,43 @@ class Board:
         for space in self.spaces:
             if space.ShowPiece(self.player, mousePosition):
                 self.UpdateBoardStatus(space)
+                self.CheckGameOver()
                 self.TogglePlayer()
+
+    def CheckGameOver(self):
+        """
+        Determine if either a player has won or a tie has occurred by scanning through
+        this object's board array for win conditions. If there are no "None" spaces left,
+        the game has ended in a tie.
+        :return:
+        """
+        # Tie testing will check entire self.board array for a "None" value. If one
+        # is found then tie will be set to false. Upon a new game over check, this var
+        # will be reset to True.
+        # Note: Apparently I can't see this var inside of a for loop? Wtf?
+        #tie = True
+
+        for row in range(3):
+            if self.board[row][0] == self.player and self.board[row][1] == self.player \
+            and self.board[row][2] == self.player:
+                print("Player " + self.player + " has won!")
+
+        for col in range(3):
+            if self.board[0][col] == self.player and self.board[1][col] == self.player \
+            and self.board[2][col] == self.player:
+                print("Player " + self.player + " has won!")
+
+        if self.board[0][0] == self.player and self.board[1][1] == self.player \
+        and self.board[2][2] == self.player:
+            print("Player " + self.player + " has won!")
+
+        if self.board[2][0] == self.player and self.board[1][1] == self.player \
+        and self.board[0][2] == self.player:
+            print("Player " + self.player + " has won!")
+
+        # Check for tie by seeing if there are no "None" values left
+        #for row in range(3):
+        #    for col in range(3):
+        #        if self.board[row][col] is None:
+        #            tie = False
+        #            break
