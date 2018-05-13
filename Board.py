@@ -8,12 +8,6 @@ class Board:
     tic-tac-toe game. It should consist of 9 separate Space instances
     and be able to keep track of game status (win, tie) and who's turn
     it is.
-
-    Challenges:
-        1. Sizing is going to be a bitch. Or maybe not. Lotsa math!!
-            - Could pass the Screen and do sizing based on that
-        2. How do I know if a particular space object is clicked? Do
-           I compare x,y of the click with all the dimensions?
     """
 
     def __init__(self, screen):
